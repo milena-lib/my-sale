@@ -1,0 +1,16 @@
+{
+  "expo": {
+    "name": "MySale",
+    "icon": "./app/assets/images/icon.png",
+    "slug": "mysale",
+    "version": "3.0.2",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "android": {
+      "package": "com.mysale.app"
+    },
+    "description": ""
+  },
+  "name": "MySale"
+}
