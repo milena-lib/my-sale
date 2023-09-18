@@ -75,6 +75,7 @@ export class PaymentScreen extends React.Component {
             custId: '',
             custPhone: '',
             custEmail: '',
+            custSMSPhone: '',
             custRemarks: '',
             isMailOnly: '',
             eilatFlag: false,
@@ -109,7 +110,6 @@ export class PaymentScreen extends React.Component {
         this.setState({isLoading: true, message: null});
         Api.post('/GetPaymentOptions', {strCartId: GlobalHelper.cartId}).then(resp => {
             this.setState({isLoading: false});
-            console.log(resp.d.PaymentOptionsList)
             if (resp.d && resp.d.IsSuccess && resp.d.PaymentOptionsList.length > 0) {
                 let defaultPaymentOption = resp.d.PaymentOptionsList.filter((po) => {
                     return po.PaymentOptionCode === PaymentOptions.CREDIT_AUTO ||
@@ -184,7 +184,6 @@ export class PaymentScreen extends React.Component {
         let options = [];
         let payLabel = '';
         paymentOptions.forEach((po, index) => {
-            console.log(po.PaymentOptionsList)
             switch (po.PaymentOptionCode) {
                 case PaymentOptions.CREDIT_AUTO_EMV:
                     payLabel = 'תשלום בכרטיס אשראי' + (po.TextMsg ? " (" + po.TextMsg + ")" : '');
@@ -714,6 +713,9 @@ export class PaymentScreen extends React.Component {
         }
     }
 
+
+    //TODO
+    //send to server
     sendPaymentToCashbox = () => {
         this.setState({isLoading: true, message: null});
         Api.post('/SendPaymentToCashbox', {
@@ -895,8 +897,6 @@ export class PaymentScreen extends React.Component {
             })[0]
         });
         this.setState({radioSelected : data})
-        console.log(this.state.radioPaymentOptions)
-
     }
 
     showPaymentInfo = () => {
@@ -943,7 +943,8 @@ export class PaymentScreen extends React.Component {
                                                 addressRequired={this.state.addressRequired} cities={this.state.cities}
                                                 city={this.state.city} street={this.state.street}
                                                 houseNumber={this.state.houseNumber} zipCode={this.state.zipCode}
-                                                eilatResidentBase64EncodedImage={this.state.eilatResidentBase64EncodedImage}/>}
+                                                eilatResidentBase64EncodedImage={this.state.eilatResidentBase64EncodedImage}
+                            />}
                         <View style={MySaleStyle.flex1}>
                             <View style={MySaleStyle.flex1}>
                                 <Text style={MySaleStyle.textHeader}>תשלום</Text>

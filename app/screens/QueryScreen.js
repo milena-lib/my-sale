@@ -25,7 +25,6 @@ export default class QueryScreen extends React.Component {
         this.setState({ orgUnits: resp.d.ListOrgUnit });
       } else {
         Alert.alert(resp.d.FriendlyMessage);
-        console.log(resp.d.ErrorMessage);
       }
     }).catch((ex) => {
       this.setState({ isLoading: false });

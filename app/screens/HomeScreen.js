@@ -113,8 +113,6 @@ const HomeScreen = (props) => {
                     barcodeData: barcode
                 });
             } else {
-                console.log("Error")
-                console.log(resp)
                 let msg = "אירעה שגיאה בטעינת תיאור המוצר";
                 if (resp.d.FriendlyMessage) {
                     msg = resp.d.FriendlyMessage;
