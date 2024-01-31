@@ -21,12 +21,11 @@ import RefreshDataScreen from '../screens/RefreshDataScreen';
 import LogoutScreen from '../screens/LogoutScreen';
 import PaymentScreen from '../screens/PaymentScreen';
 import SearchProductsModalScreen from '../screens/SearchProductsModalScreen';
-import {BarcodeModalScreenConnectRedux} from '../screens/BarcodeModalScreen';
+import {BarcodeModalScreen} from '../screens/BarcodeModalScreen';
 import DealDetailsScreen from '../screens/DealDetailsScreen';
 import CaspitOperationsScreen from '../screens/CaspitOperationsScreen';
 import { useSelector } from 'react-redux';
 import CouponsScreen from '../screens/CouponsScreen';
-import {BarcodeErrorPopupConnectRedux} from "../components/BarcodeErrorPopup";
 
 const VERSION = Constants.manifest.version;
 
@@ -45,15 +44,10 @@ const HomeStack = () => <Stack.Navigator initialRouteName="Home" screenOptions={
       presentation: 'modal', headerShown: true, headerTitle: '',
       headerRight: () => <Text style={{ fontSize: 21, fontFamily: 'simpler-regular-webfont' }}>חיפוש מוצרים</Text>
     }} />
-  <Stack.Screen name="Barcode" component={BarcodeModalScreenConnectRedux} options={{
+  <Stack.Screen name="Barcode" component={BarcodeModalScreen} options={{
     presentation: 'modal', headerShown: true, headerTitle: '',
     headerRight: () => <Text style={{ fontSize: 21, fontFamily: 'simpler-regular-webfont' }}>סריקת ברקוד</Text>
   }} />
-  {/*TODO*/}
-  {/*<Stack.Screen name="BarcodePopup" component={BarcodeErrorPopupConnectRedux} options={{*/}
-  {/*  presentation: 'modal', headerShown: true, headerTitle: '',*/}
-  {/*  headerRight: () => <Text style={{ fontSize: 21, fontFamily: 'simpler-regular-webfont' }}>חלון בעיית ברקוד</Text>*/}
-  {/*}} />*/}
 </Stack.Navigator>;
 
 const createDrawerLabel = (focused, label) => {

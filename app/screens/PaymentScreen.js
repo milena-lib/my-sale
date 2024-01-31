@@ -75,7 +75,6 @@ export class PaymentScreen extends React.Component {
             custId: '',
             custPhone: '',
             custEmail: '',
-            custSMSPhone: '',
             custRemarks: '',
             isMailOnly: '',
             eilatFlag: false,
@@ -93,7 +92,10 @@ export class PaymentScreen extends React.Component {
             approveMsg: null,
             approveLoading: false,
             approverName: '',
-            showManualPermissionBtn: false
+            showManualPermissionBtn: false,
+            isSMSOnly: false,
+            SMSPhone: '',
+
         };
     }
 
@@ -247,6 +249,8 @@ export class PaymentScreen extends React.Component {
         return options;
     }
 
+    //TODO
+    //send to server
     addCreditPayment = (track2) => {
         let invoiceDetailsState = this.custInvoiceDetails.state;
         let emvManual = this.state.selectedPaymentOption.PaymentOptionCode == PaymentOptions.CREDIT_MANUAL_EMV;
@@ -290,6 +294,8 @@ export class PaymentScreen extends React.Component {
             city: invoiceDetailsState.city,
             zipCode: invoiceDetailsState.zipCode,
             eilatFlag: invoiceDetailsState.isEilatResident,
+            isSMSOnly: invoiceDetailsState.isSMSOnly ? "Y":"N",
+            SMSPhone: invoiceDetailsState.SMSPhone,
             emvFlag,
             emvManual
         }).then(resp => {
@@ -408,10 +414,14 @@ export class PaymentScreen extends React.Component {
         });
     }
 
+    //TODO
+    //send to server
     addBillPayment = () => {
         if (this.validateForm() && this.state.selectedPaymentsNumber !== -1) {
 
             let invoiceDetailsState = this.custInvoiceDetails.state;
+            console.log("invoiceDetailsState")
+            console.log(invoiceDetailsState)
             this.setState({
                 isLoading: true,
                 message: 'התשלום בתהליך, אנא המתן...',
@@ -435,6 +445,8 @@ export class PaymentScreen extends React.Component {
                 zipCode: invoiceDetailsState.zipCode,
                 eilatFlag: invoiceDetailsState.isEilatResident,
                 eilatResidentBase64EncodedImage: invoiceDetailsState.eilatResidentBase64EncodedImage,
+                isSMSOnly: invoiceDetailsState.isSMSOnly ? "Y":"N",
+                SMSPhone: invoiceDetailsState.SMSPhone,
             }).then(resp => {
                 if (resp.d && resp.d.IsSuccess) {
                     if (resp.d.ApproversList.length > 0) {
@@ -712,10 +724,6 @@ export class PaymentScreen extends React.Component {
             ]);
         }
     }
-
-
-    //TODO
-    //send to server
     sendPaymentToCashbox = () => {
         this.setState({isLoading: true, message: null});
         Api.post('/SendPaymentToCashbox', {
@@ -733,7 +741,9 @@ export class PaymentScreen extends React.Component {
             address2: this.state.houseNumber,
             city: this.state.city,
             zipCode: this.state.zipCode,
-            eilatFlag: this.state.isEilatResident
+            eilatFlag: this.state.isEilatResident,
+            isSMSOnly: this.state.isSMSOnly ? "Y":"N",
+            SMSPhone: this.state.SMSPhone,
         }).then(resp => {
             this.setState({isLoading: false});
             if (resp.d && resp.d.IsSuccess) {
@@ -821,7 +831,9 @@ export class PaymentScreen extends React.Component {
             houseNumber: invoiceDetailsState.houseNumber,
             zipCode: invoiceDetailsState.zipCode,
             isEilatResident: invoiceDetailsState.isEilatResident,
-            eilatResidentBase64EncodedImage: invoiceDetailsState.eilatResidentBase64EncodedImage
+            eilatResidentBase64EncodedImage: invoiceDetailsState.eilatResidentBase64EncodedImage,
+            isSMSOnly: invoiceDetailsState.isSMSOnly ? "Y":"N",
+            SMSPhone: invoiceDetailsState.SMSPhone,
         }
         this.setState(Object.assign(newState, paymentState));
     }

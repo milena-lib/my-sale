@@ -22,8 +22,8 @@ export default class CustInvoiceDetails extends React.Component {
             globalMessage: '',
             listCustIdType: [],
             isMailOnly: false,
-            isSMS: false,
-            custSMSPhone: "",
+            isSMSOnly: false,
+            SMSPhone: "",
             customerName: '',
             customerPhone: '',
             emailAddress: '',
@@ -102,12 +102,12 @@ export default class CustInvoiceDetails extends React.Component {
             isLoading: false,
             globalMessage: '',
             isMailOnly: false,
-            isSMS: false,
+            isSMSOnly: false,
             customerName: '',
             custIdType: 'UNIDENTIFIED',
             custIdNum: '',
             customerPhone: '',
-            custSMSPhone: '',
+            SMSPhone: '',
             emailAddress: '',
             remarks: '',
             isEilatResident: false,
@@ -123,7 +123,7 @@ export default class CustInvoiceDetails extends React.Component {
     formIsValid() {
         this.setState({submitted: true});
 
-        if (this.props.phoneRequired && this.state.customerPhone === '' && this.state.custSMSPhone === "")
+        if (this.props.phoneRequired && this.state.customerPhone === '' && this.state.SMSPhone === "")
             return false;
 
         let result;
@@ -134,8 +134,8 @@ export default class CustInvoiceDetails extends React.Component {
                 ((this.state.custIdType === 'ID_NUM' && GlobalHelper.validateIdNum(this.state.custIdNum)) ||
                     ((this.state.custIdType !== 'ID_NUM' && this.state.custIdNum.length > 4)));
 
-            if (this.state.isSMS) {
-                result = result && (this.state.custSMSPhone !== '' && (this.state.custSMSPhone.length >= 9 && this.state.custSMSPhone.length <= 10))
+            if (this.state.isSMSOnly) {
+                result = result && (this.state.SMSPhone !== '' && (this.state.SMSPhone.length >= 9 && this.state.SMSPhone.length <= 10))
             }
         } else {
             result = (!this.state.isMailOnly || GlobalHelper.isEmailValid(this.state.emailAddress));
@@ -146,7 +146,7 @@ export default class CustInvoiceDetails extends React.Component {
                 result = result && GlobalHelper.validateIdNum(this.state.custIdNum);
             }
 
-            if ((this.state.isSMS && this.state.custSMSPhone === '') || (this.state.isSMS && this.state.custSMSPhone.length < 9 || this.state.custSMSPhone.length > 10)) {
+            if ((this.state.isSMSOnly && this.state.SMSPhone === '') || (this.state.isSMSOnly && this.state.SMSPhone.length < 9 || this.state.SMSPhone.length > 10)) {
                 result = false;
             }
         }
@@ -256,7 +256,7 @@ export default class CustInvoiceDetails extends React.Component {
 
                         <View style={[MySaleStyle.flexRow, {paddingLeft: 38, paddingTop: 10}]}>
                             <Checkbox style={styles.margCB} color={Colors.partnerColor} value={this.state.isMailOnly}
-                                      disabled={this.state.isSMS}
+                                      disabled={this.state.isSMSOnly}
                                       onValueChange={(value) => this.setState({isMailOnly: value})}/>
                             <Text
                                 style={[styles.padLabelOfSwitch, MySaleStyle.margTop15, MySaleStyle.padRight10, MySaleStyle.normalFont, MySaleStyle.flexRow]}>שלח
@@ -279,19 +279,19 @@ export default class CustInvoiceDetails extends React.Component {
                                     <Text style={{color: Colors.redColor, marginLeft: 30}}>נא להזין כתובת מייל
                                         חוקית</Text>}
                             </View>}
-                        <View style={[MySaleStyle.flexRow, {paddingLeft: 38, paddingTop: 10}]}>
-                            <Checkbox style={styles.margCB} color={Colors.partnerColor} value={this.state.isSMS}
-                                      disabled={this.state.isMailOnly}
-                                      onValueChange={(value) => this.setState({
-                                          isSMS: value,
-                                          custSMSPhone: this.state.customerPhone
-                                      })}/>
-                            <Text
-                                style={[styles.padLabelOfSwitch, MySaleStyle.margTop15, MySaleStyle.padRight10, MySaleStyle.normalFont, MySaleStyle.flexRow]}>שלח
-                                חשבונית ב-SMS</Text>
-                        </View>
                         {/* SMS */}
-                        {this.state.isSMS &&
+                        {/*<View style={[MySaleStyle.flexRow, {paddingLeft: 38, paddingTop: 10}]}>*/}
+                        {/*    <Checkbox style={styles.margCB} color={Colors.partnerColor} value={this.state.isSMSOnly}*/}
+                        {/*              disabled={this.state.isMailOnly}*/}
+                        {/*              onValueChange={(value) => this.setState({*/}
+                        {/*                  isSMSOnly: value,*/}
+                        {/*                  SMSPhone: this.state.customerPhone*/}
+                        {/*              })}/>*/}
+                        {/*    <Text*/}
+                        {/*        style={[styles.padLabelOfSwitch, MySaleStyle.margTop15, MySaleStyle.padRight10, MySaleStyle.normalFont, MySaleStyle.flexRow]}>שלח*/}
+                        {/*        חשבונית ב-SMS</Text>*/}
+                        {/*</View>*/}
+                        {this.state.isSMSOnly &&
                             <View style={{flex: 1, padding: 15}}>
                                 <FloatingLabelInput
                                     label="מספר טלפון"
@@ -299,9 +299,9 @@ export default class CustInvoiceDetails extends React.Component {
                                     textAlign={'right'}
                                     maxLength={10}
                                     keyboardType='numeric'
-                                    underlineColorAndroid={((this.state.isSMS && !this.state.custSMSPhone) || (this.state.custSMSPhone && ((this.state.custSMSPhone.length < 9 || this.state.custSMSPhone.length > 10)))) ? Colors.redColor : undefined}
-                                    onChangeText={(custSMSPhone) => this.setState({custSMSPhone})}/>
-                                {this.state.submitted && this.state.isSMS && this.state.custSMSPhone === '' &&
+                                    underlineColorAndroid={((this.state.isSMSOnly && !this.state.SMSPhone) || (this.state.SMSPhone && ((this.state.SMSPhone.length < 9 || this.state.SMSPhone.length > 10)))) ? Colors.redColor : undefined}
+                                    onChangeText={(SMSPhone) => this.setState({SMSPhone})}/>
+                                {this.state.submitted && this.state.isSMSOnly && this.state.SMSPhone === '' &&
                                     <Text style={{color: Colors.redColor, marginLeft: 30}}>נא להזין מספר טלפון</Text>}
                             </View>}
                         {this.state.eilatFlag &&

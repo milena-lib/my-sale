@@ -53,7 +53,6 @@ class Api {
 
   static xhr(url, params, verb) {
     params = Object.assign({}, params, { strCurrentOrgUnit: GlobalHelper.orgUnitCode });
-
     let options = Object.assign({ method: verb }, params ? { body: JSON.stringify(params) } : null);
     options.headers = Api.headers();
     console.log("Called URL "+ url)

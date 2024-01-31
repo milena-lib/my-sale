@@ -45,23 +45,19 @@ const HomeScreen = (props) => {
     const [errorMsg, setErrorMsg] = useState(null);
     const [refreshing, setRefreshing] = useState(false);
     const [barcode, setBarcode] = useState('');
-    //const [showDialog, setShowDialog] = useState(false);
-
-    const navigation = useNavigation();
 
     const customer = useSelector(state => state.connectionDetailsReducer.customer);
     useEffect(() => {
         const appStateSubscription = AppState.addEventListener("change", handleAppStateChange);
         // let scannerSub = null;
         // let focusSubscription = null;
-        let blurSubscription = null;
+        // let blurSubscription = null;
         let eventEmitter = null
         if (IS_P2_LITE_DEVICE) {
             // console.log(SunmiScanner.scan(result=>console.log(result)))
             // focusSubscription = navigation.addListener('focus', () => {
             //     scannerSub = DeviceEventEmitter.addListener('onReceiveBarcode', onReceiveBarcode);
             // });
-
             eventEmitter = new NativeEventEmitter().addListener('onReceiveBarcode', onReceiveBarcode)
         }
         // blurSubscription = navigation.addListener('blur', () => {
@@ -107,7 +103,6 @@ const HomeScreen = (props) => {
         ).then(resp => {
             setIsLoading(false);
             if (resp?.d?.IsSuccess && resp.d.Product) {
-                //setShowDialog(false)
                 props.navigation.navigate('ProductDetails', {
                     productDetailsByBarcode: resp.d.Product,
                     barcodeData: barcode
@@ -118,7 +113,6 @@ const HomeScreen = (props) => {
                     msg = resp.d.FriendlyMessage;
                 }
                 Alert.alert("מוצר לא נמצא", msg,[{text:"אישור" ,style:"default"}]);
-                //setShowDialog(true)
             }
         });
     }
@@ -241,7 +235,7 @@ const HomeScreen = (props) => {
                             מומלצים</Text>)}
                 {errorMsg &&
                     <Text style={{padding: 20, fontSize: 16, fontFamily: 'simpler-regular-webfont'}}>{errorMsg}</Text>}
-                {/*TODO this is ment for a nice dialog box when scanned item isnt found, can remove if no need anymore*/}
+                {/*TODO this is meant for a nice dialog box when scanned item isn't found, can remove if no need anymore P2Lite*/}
                 {/*{showDialog && <BarcodeErrorPopup barcode={barcode} navigation={props.navigation} onBarcodeScanned={onReceiveBarcode}/>}*/}
             </ScrollView>
         </View>
