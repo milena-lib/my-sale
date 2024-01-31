@@ -280,17 +280,17 @@ export default class CustInvoiceDetails extends React.Component {
                                         חוקית</Text>}
                             </View>}
                         {/* SMS */}
-                        {/*<View style={[MySaleStyle.flexRow, {paddingLeft: 38, paddingTop: 10}]}>*/}
-                        {/*    <Checkbox style={styles.margCB} color={Colors.partnerColor} value={this.state.isSMSOnly}*/}
-                        {/*              disabled={this.state.isMailOnly}*/}
-                        {/*              onValueChange={(value) => this.setState({*/}
-                        {/*                  isSMSOnly: value,*/}
-                        {/*                  SMSPhone: this.state.customerPhone*/}
-                        {/*              })}/>*/}
-                        {/*    <Text*/}
-                        {/*        style={[styles.padLabelOfSwitch, MySaleStyle.margTop15, MySaleStyle.padRight10, MySaleStyle.normalFont, MySaleStyle.flexRow]}>שלח*/}
-                        {/*        חשבונית ב-SMS</Text>*/}
-                        {/*</View>*/}
+                        <View style={[MySaleStyle.flexRow, {paddingLeft: 38, paddingTop: 10}]}>
+                            <Checkbox style={styles.margCB} color={Colors.partnerColor} value={this.state.isSMSOnly}
+                                      disabled={this.state.isMailOnly}
+                                      onValueChange={(value) => this.setState({
+                                          isSMSOnly: value,
+                                          SMSPhone: this.state.customerPhone
+                                      })}/>
+                            <Text
+                                style={[styles.padLabelOfSwitch, MySaleStyle.margTop15, MySaleStyle.padRight10, MySaleStyle.normalFont, MySaleStyle.flexRow]}>שלח
+                                חשבונית ב-SMS</Text>
+                        </View>
                         {this.state.isSMSOnly &&
                             <View style={{flex: 1, padding: 15}}>
                                 <FloatingLabelInput
