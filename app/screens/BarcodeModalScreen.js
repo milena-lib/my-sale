@@ -39,7 +39,6 @@ export class BarcodeModalScreen extends React.Component {
         }
 
         this.setState({ isLoading: true, message: null });
-
         if (!this.state.isExpectBarcode) {
             Api.post('/GetProductDetails', {
                     strProductCode: barcode.data ? barcode.data : this.state.barcode,
@@ -62,9 +61,12 @@ export class BarcodeModalScreen extends React.Component {
             });
         } else {
             Api.post('/UpdateLineInCart', {
-                strProductCode: barcode.data ? barcode.data : this.state.barcode, strQuantity: 1, promotionId,
+                strProductCode: barcode.data ? barcode.data : this.state.barcode,
+                strQuantity: 1, promotionId,
                 billCustId: this.props.customer ? this.props.customer.BillingCustomerId : '',
-                strCartId: GlobalHelper.cartId, strLineId: '', isGetUpdatedCart: false
+                strCartId: GlobalHelper.cartId,
+                strLineId: '',
+                isGetUpdatedCart: false
             }).then(resp => {
                 this.setState({ isLoading: false });
                 if (resp.d && resp.d.IsSuccess) {

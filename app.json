@@ -3,7 +3,7 @@
     "name": "MySaleTest",
     "icon": "./app/assets/images/icon.png",
     "slug": "mysale",
-    "version": "3.0.3",
+    "version": "3.0.3c",
     "assetBundlePatterns": [
       "**/*"
     ],

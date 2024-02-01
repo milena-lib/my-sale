@@ -702,7 +702,7 @@ export class PaymentScreen extends React.Component {
         this.props.clearCustomer();
         this.props.clearCart();
         this.props.disableDrawer(false);
-        this.props.navigation.navigate('Home', {screen: 'Home'});
+        this.props.navigation.navigate('HomeScreen', {screen: 'HomeScreen'});
     }
 
     sendPaymentToCashboxConfirm = () => {
