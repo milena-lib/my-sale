@@ -210,7 +210,7 @@ export class CartScreen extends React.Component {
         this.props.clearCustomer();
         this.props.clearCart();
         this.setState({ isLoading: true });
-        this.props.navigation.navigate('Home', { screen: 'Home' });
+        this.props.navigation.navigate('HomeScreen', { screen: 'HomeScreen' });
       } else {
         let msg = 'אירעה שגיאה במחיקת הסל';
         if (resp.d.FriendlyMessage) {

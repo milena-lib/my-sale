@@ -92,9 +92,12 @@ export class ProductDetailsScreen extends React.Component {
         let productCode = catalogNum ? catalogNum : barcodeData;
         //Setting strPromotionCode to null creates a line using the default promotion
         Api.post('/UpdateLineInCart', {
-            strProductCode: productCode, strQuantity: 1, promotionId: promotionId,
+            strProductCode: productCode,
+            strQuantity: 1,
+            promotionId: promotionId,
             billCustId: this.props.customer ? this.props.customer.BillingCustomerId : '',
-            strCartId: GlobalHelper.cartId, strLineId: '', isGetUpdatedCart: false
+            strCartId: GlobalHelper.cartId,
+            strLineId: '', isGetUpdatedCart: false
         }).then(resp => {
             this.setState({ isLoading: false });
             if (resp.d && resp.d.IsSuccess) {

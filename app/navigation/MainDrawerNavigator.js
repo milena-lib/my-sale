@@ -21,7 +21,7 @@ import RefreshDataScreen from '../screens/RefreshDataScreen';
 import LogoutScreen from '../screens/LogoutScreen';
 import PaymentScreen from '../screens/PaymentScreen';
 import SearchProductsModalScreen from '../screens/SearchProductsModalScreen';
-import {BarcodeModalScreen} from '../screens/BarcodeModalScreen';
+import BarcodeModalScreen from '../screens/BarcodeModalScreen';
 import DealDetailsScreen from '../screens/DealDetailsScreen';
 import CaspitOperationsScreen from '../screens/CaspitOperationsScreen';
 import { useSelector } from 'react-redux';

@@ -333,14 +333,13 @@ const styles = StyleSheet.create({
     },
     pickerCustIdType: {
         height: 50,
-        width: 150,
+        width: 160,
         marginTop: 7,
         fontFamily: 'simpler-regular-webfont'
     },
     inputText: {
         marginTop: 13,
-        //marginLeft: 30,
-        //paddingRight: 10,
+        //paddingRight: 30,
         //paddingLeft: 10,
         //alignSelf: 'flex-end', 
         fontSize: 18,

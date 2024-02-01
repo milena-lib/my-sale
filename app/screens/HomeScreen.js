@@ -35,7 +35,6 @@ import UserDetails from '../components/UserDetails';
 import SearchCustomer from '../components/SearchCustomer';
 import SunmiScanner from '../utils/SunmiScanner';
 import Scale from "../components/Scale";
-import BarcodeErrorPopup from "../components/BarcodeErrorPopup";
 
 
 const HomeScreen = (props) => {
@@ -47,6 +46,7 @@ const HomeScreen = (props) => {
     const [barcode, setBarcode] = useState('');
 
     const customer = useSelector(state => state.connectionDetailsReducer.customer);
+
     useEffect(() => {
         const appStateSubscription = AppState.addEventListener("change", handleAppStateChange);
         // let scannerSub = null;
@@ -236,7 +236,6 @@ const HomeScreen = (props) => {
                 {errorMsg &&
                     <Text style={{padding: 20, fontSize: 16, fontFamily: 'simpler-regular-webfont'}}>{errorMsg}</Text>}
                 {/*TODO this is meant for a nice dialog box when scanned item isn't found, can remove if no need anymore P2Lite*/}
-                {/*{showDialog && <BarcodeErrorPopup barcode={barcode} navigation={props.navigation} onBarcodeScanned={onReceiveBarcode}/>}*/}
             </ScrollView>
         </View>
     );
