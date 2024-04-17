@@ -78,10 +78,10 @@ import RNFS from 'react-native-fs';
 //         await this.getImei();
 //
 //         const images = [
-//             require('./app/assets/images/LogoMySale.png'),
-//             require('./app/assets/images/icon.png'),
-//             require('./app/assets/images/cart.png'),
-//             require('./app/assets/images/EmptyCart.png'),
+//             require('./application/assets/images/LogoMySale.png'),
+//             require('./application/assets/images/icon.png'),
+//             require('./application/assets/images/cart.png'),
+//             require('./application/assets/images/EmptyCart.png'),
 //         ];
 //
 //         const cacheImages = images.map((image) => {

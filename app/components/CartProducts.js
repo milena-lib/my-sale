@@ -34,10 +34,13 @@ export class CartProducts extends React.Component {
   }
 
   updateLine = (lineId, productsCode, promotionId, quantity) => {
+    console.log(this.props)
     this.setState({ isLoading: true });
     Api.post('/UpdateLineInCart', {
       strProductCode: productsCode, strQuantity: quantity, promotionId: promotionId,
-      billCustId: '', strCartId: GlobalHelper.cartId, strLineId: lineId,
+      billCustId: '',
+      strCartId: GlobalHelper.cartId,
+      strLineId: lineId,
       isGetUpdatedCart: true
     }).then(resp => {
       this.setState({ isLoading: false, openChangePromotionModal: false });

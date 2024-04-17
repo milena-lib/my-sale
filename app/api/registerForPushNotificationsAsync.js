@@ -10,7 +10,7 @@ export default (async function registerForPushNotificationsAsync() {
     return;
   }
 
-  // Android remote notification permissions are granted during the app
+  // Android remote notification permissions are granted during the application
   // install, so this will only ask on iOS
   let { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
 
