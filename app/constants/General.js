@@ -1,7 +1,7 @@
 import Constants from 'expo-constants';
 import * as Device from 'expo-device';
 
-const APP_VERSION = '3.0.2';
+const APP_VERSION = '3.1.1';
 const APP_NAME = 'MySale';
 const TEST_MODE = Constants.manifest.name.toLowerCase().search('test') !== -1;
 console.log("Name: " +Constants.manifest.name)
