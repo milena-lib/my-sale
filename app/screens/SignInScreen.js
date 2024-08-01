@@ -61,7 +61,7 @@ export default class SignInScreen extends React.Component {
                 }
                 else {
                     this.setState({ errorMessage: "אירעה שגיאה בשליחת ה- SMS למספר שהוזן" });
-                    console.log('Error while sending SMS: ' + JSON.stringify(resp));
+                    console.log('Error while sending SMS: ', JSON.stringify(resp));
                 }
             }
 

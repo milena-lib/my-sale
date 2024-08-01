@@ -279,9 +279,9 @@ export default function AuthLoadingScreen(props) {
     useEffect(function () {
         bootstrapAsync();
         pinpadStateListener = DeviceEventEmitter.addListener('onPinpadStateChange', onPinpadStateChange);
-
+        
         return (() => pinpadStateListener.remove())
-
+    
     }, [])
 
 
@@ -348,7 +348,7 @@ export default function AuthLoadingScreen(props) {
                                             props.navigation.navigate('Auth');
                                         }
                                     });
-
+                                    
                                     Api.post('/AddHit').then(resp => {
                                     }).catch((ex) => {
                                         console.log(ex);

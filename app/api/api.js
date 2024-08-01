@@ -55,8 +55,8 @@ class Api {
     params = Object.assign({}, params, { strCurrentOrgUnit: GlobalHelper.orgUnitCode });
     let options = Object.assign({ method: verb }, params ? { body: JSON.stringify(params) } : null);
     options.headers = Api.headers();
-    console.log("Called URL "+ url)
-    console.log(params);
+    console.log("Called URL ", url);
+    console.log("params: ", params);
 
     return fetch(url, options).then(resp => {
       let json = resp.json();
@@ -64,8 +64,8 @@ class Api {
         return json;
       }
       return json.then(err => {
-        console.log("ERROR:")
-        console.log(err)
+        console.log("ERROR:");
+        console.log(err);
         const lastSlashIndex = url.lastIndexOf("/");
         const funcName = url.substring(lastSlashIndex + 1, url.length);
         const data = {
