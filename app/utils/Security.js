@@ -48,6 +48,9 @@ class Security {
                         module: null,
                     }
                 };
+                console.log("postByUrl: ", ORIGIN_URL + ADAPTER_HANDLER_URL);
+                console.log("postByUrl params: ", params);
+                
                 return await Api.postByUrl(ORIGIN_URL + ADAPTER_HANDLER_URL, params
                 ).then(async resp => {
                     let isValid = await Security.validateAllGuidsCallBack(resp);
@@ -74,6 +77,7 @@ class Security {
         var success = false;
         try {
             if (data != null && data != "") {
+                console.log("validateAllGuidsCallBack data: ", data);
                 if (data != null && (data.CheckGuidAndAppAuthorizationResult != null || data.CheckGuidAndAppAuthorizationByApplicationResult != null)) {
                     if (data.CheckGuidAndAppAuthorizationResult == null)
                         data.CheckGuidAndAppAuthorizationResult = data.CheckGuidAndAppAuthorizationByApplicationResult;

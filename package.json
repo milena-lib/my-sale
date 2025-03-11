@@ -1,6 +1,6 @@
 {
-  "name": "MySale",
-  "version": "3.0.3",
+  "name": "MySaleTEST",
+  "version": "4.0.0",
   "main": "index.js",
   "scripts": {
     "android": "expo run:android",
@@ -34,6 +34,7 @@
     "expo-web-browser": "^12.1.1",
     "react": "18.2.0",
     "react-native": "0.71.14",
+    "react-native-device-info": "^14.0.1",
     "react-native-fs": "^2.20.0",
     "react-native-gesture-handler": "^2.12.0",
     "react-native-icon-badge": "^1.1.3",

@@ -54,3 +54,6 @@ buck-out/
 .expo/
 web-build/
 dist/
+
+# Ignore Gradle build output directory
+build

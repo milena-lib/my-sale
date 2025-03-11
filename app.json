@@ -1,9 +1,9 @@
 {
   "expo": {
-    "name": "MySaleTest",
+    "name": "MySale",
     "icon": "./app/assets/images/icon.png",
     "slug": "mysale",
-    "version": "3.1.1",
+    "version": "3.1.17",
     "assetBundlePatterns": [
       "**/*"
     ],

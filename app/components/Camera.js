@@ -64,7 +64,7 @@ export default class CameraComponent extends React.Component {
                 <MCIcon color={'white'} name={'close'} size={50} />
               </TouchableOpacity>
             </View>
-            <View style={{ flex: 1 }}>
+            <View style={styles.modalFooter}>
               <View style={styles.snapBtnContainer}>
                 {this.state.takingPicture ? <MyActivityIndicator /> :
                   <TouchableOpacity style={styles.snapIconContainer} onPress={this.snap}>
@@ -95,7 +95,18 @@ const styles = StyleSheet.create({
     flex: 0.25,
     marginHorizontal: 30,
     marginBottom: 10,
-    marginTop: 20,
+    marginTop: 0,
+  },
+  modalFooter:{
+    display: 'flex',
+    flexDirection: 'column',    
+    justifyContent: 'flex-end',
+    flex: 1,
+    alignItems: 'center',
+    alignContent: 'center',
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: 'transparent'
   },
   snapBtnContainer: {
     flex: 1,
@@ -106,13 +117,13 @@ const styles = StyleSheet.create({
   snapIconContainer: {
     flex: 1,
     alignSelf: 'flex-end',
-    alignItems: 'center'
+    alignItems: 'center' 
   },
   text: {
     color: 'white',
     fontSize: 18,
     textAlign: 'center',
-    marginBottom: 10,
+    marginBottom: 20,
     fontFamily: 'simpler-regular-webfont'
-  }
+  }  
 });

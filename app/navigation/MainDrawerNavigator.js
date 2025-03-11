@@ -255,7 +255,7 @@ function MainDrawerNavigator() {
   const isDrawerDisabled = useSelector(state => state.cartReducer.isDrawerDisabled);
 
   const AppHeader = ({ navigation }) => {
-
+    
     return {
       headerTitle: () => <LogoMySale />,
       headerRight: () => (

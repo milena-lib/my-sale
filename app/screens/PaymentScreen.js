@@ -106,7 +106,7 @@ export class PaymentScreen extends React.Component {
 
     componentWillUnmount() {
         this._unsubscribe();
-    }
+    } 
 
     getPaymentOptions() {
         this.setState({isLoading: true, message: null});
@@ -294,8 +294,8 @@ export class PaymentScreen extends React.Component {
             city: invoiceDetailsState.city,
             zipCode: invoiceDetailsState.zipCode,
             eilatFlag: invoiceDetailsState.isEilatResident,
-            isSMSOnly: invoiceDetailsState.isSMSOnly ? "Y":"N",
-            SMSPhone: invoiceDetailsState.SMSPhone,
+            //isSMSOnly: invoiceDetailsState.isSMSOnly ? "Y":"N",
+            //SMSPhone: invoiceDetailsState.SMSPhone,
             emvFlag,
             emvManual
         }).then(resp => {
@@ -435,18 +435,18 @@ export class PaymentScreen extends React.Component {
                 isMailOnly: invoiceDetailsState.isMailOnly ? 'Y' : 'N',
                 email: invoiceDetailsState.emailAddress,
                 strCustName: invoiceDetailsState.customerName,
+                strCustPhone: invoiceDetailsState.customerPhone,
                 custIdTypeCode: invoiceDetailsState.custIdType,
                 custIdNum: invoiceDetailsState.custIdNum,
                 remarks: invoiceDetailsState.remarks,
-                strCustPhone: invoiceDetailsState.customerPhone,
                 address1: invoiceDetailsState.street,
                 address2: invoiceDetailsState.houseNumber,
                 city: invoiceDetailsState.city,
                 zipCode: invoiceDetailsState.zipCode,
                 eilatFlag: invoiceDetailsState.isEilatResident,
-                eilatResidentBase64EncodedImage: invoiceDetailsState.eilatResidentBase64EncodedImage,
-                isSMSOnly: invoiceDetailsState.isSMSOnly ? "Y":"N",
-                SMSPhone: invoiceDetailsState.SMSPhone,
+                eilatResidentBase64EncodedImage: invoiceDetailsState.eilatResidentBase64EncodedImage //,
+                //isSMSOnly: invoiceDetailsState.isSMSOnly ? "Y":"N",
+                //SMSPhone: invoiceDetailsState.SMSPhone,
             }).then(resp => {
                 if (resp.d && resp.d.IsSuccess) {
                     if (resp.d.ApproversList.length > 0) {
@@ -724,6 +724,54 @@ export class PaymentScreen extends React.Component {
             ]);
         }
     }
+    // sendPaymentToCashbox = () => {
+    //     this.setState({isLoading: true, message: null});
+    //     Api.post('/SendPaymentToCashbox', {
+    //         strCartId: GlobalHelper.cartId,
+    //         strCustPhone: this.state.custPhone,
+    //         isMailOnly: this.state.isMailOnly ? 'Y' : 'N',
+    //         email: this.state.custEmail,
+    //         strCustName: this.state.custName,
+    //         eilatResidentBase64EncodedImage: this.state.eilatResidentBase64EncodedImage ? this.state.eilatResidentBase64EncodedImage : '', //milena 07.01.2025
+    //         custIdTypeCode: this.state.custIdType,
+    //         custIdNum: this.state.custId,
+    //         idBase64EncodedImage: this.state.idBase64EncodedImage ? this.state.idBase64EncodedImage : '', //milena 07.01.2025
+    //         remarks: this.state.custRemarks,
+    //         address1: this.state.street,
+    //         address2: this.state.houseNumber,
+    //         city: this.state.city,
+    //         zipCode: this.state.zipCode,
+    //         eilatFlag: this.state.isEilatResidentb  //,
+    //         // isSMSOnly: this.state.isSMSOnly ? "Y":"N",
+    //         // SMSPhone: this.state.SMSPhone,
+    //     }).then(resp => {
+    //         this.setState({isLoading: false});
+    //         if (resp.d && resp.d.IsSuccess) {
+    //             let displayMsg = 'העברת התשלום לקופה הסתיימה בהצלחה';
+    //             if (resp.d.FriendlyMessage && resp.d.FriendlyMessage != "null") {
+    //                 displayMsg = displayMsg + ", " + resp.d.FriendlyMessage;
+    //             }
+    //             this.setState({
+    //                 isLoading: false, showLoader: false, message: displayMsg,
+    //                 modalIconName: 'thumbs-o-up', onMessageClose: this.onCompletePayment
+    //             });
+    //         } else {
+    //             let msg = 'אירעה שגיאה בהעברת התשלום לקופה';
+    //             if (resp.d.FriendlyMessage) {
+    //                 msg = resp.d.FriendlyMessage;
+    //             } else if (resp.d.ErrorMessage) {
+    //                 msg = msg + ", " + resp.d.ErrorMessage;
+    //             }
+    //             this.setState({
+    //                 message: Consts.globalErrorMessagePrefix + msg, errorMessage: true,
+    //                 onMessageClose: () => {
+    //                     this.setState({message: null, errorMessage: false})
+    //                 }
+    //             });
+    //         }
+    //     });
+    // }
+
     sendPaymentToCashbox = () => {
         this.setState({isLoading: true, message: null});
         Api.post('/SendPaymentToCashbox', {
@@ -732,18 +780,18 @@ export class PaymentScreen extends React.Component {
             isMailOnly: this.state.isMailOnly ? 'Y' : 'N',
             email: this.state.custEmail,
             strCustName: this.state.custName,
-            eilatResidentBase64EncodedImage: this.state.eilatResidentBase64EncodedImage,
             custIdTypeCode: this.state.custIdType,
             custIdNum: this.state.custId,
-            idBase64EncodedImage: this.state.idBase64EncodedImage,
+            idBase64EncodedImage: this.state.idBase64EncodedImage ? this.state.idBase64EncodedImage : '', //milena 07.01.2025, 
+            eilatResidentBase64EncodedImage: this.state.eilatResidentBase64EncodedImage ? this.state.eilatResidentBase64EncodedImage : '', //milena 07.01.2025,
             remarks: this.state.custRemarks,
             address1: this.state.street,
             address2: this.state.houseNumber,
             city: this.state.city,
             zipCode: this.state.zipCode,
-            eilatFlag: this.state.isEilatResident,
-            isSMSOnly: this.state.isSMSOnly ? "Y":"N",
-            SMSPhone: this.state.SMSPhone,
+            eilatFlag: this.state.isEilatResident  //,
+            // isSMSOnly: this.state.isSMSOnly ? "Y":"N",
+            // SMSPhone: this.state.SMSPhone,
         }).then(resp => {
             this.setState({isLoading: false});
             if (resp.d && resp.d.IsSuccess) {
@@ -831,9 +879,9 @@ export class PaymentScreen extends React.Component {
             houseNumber: invoiceDetailsState.houseNumber,
             zipCode: invoiceDetailsState.zipCode,
             isEilatResident: invoiceDetailsState.isEilatResident,
-            eilatResidentBase64EncodedImage: invoiceDetailsState.eilatResidentBase64EncodedImage,
-            isSMSOnly: invoiceDetailsState.isSMSOnly ? "Y":"N",
-            SMSPhone: invoiceDetailsState.SMSPhone,
+            eilatResidentBase64EncodedImage: invoiceDetailsState.eilatResidentBase64EncodedImage //,
+            // isSMSOnly: '', // invoiceDetailsState.isSMSOnly ? "Y":"N",
+            // SMSPhone: '' // invoiceDetailsState.SMSPhone,
         }
         this.setState(Object.assign(newState, paymentState));
     }

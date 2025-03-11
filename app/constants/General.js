@@ -12,7 +12,8 @@ var HOST_SERVER_URL = '';
 
 if (!TEST_MODE) {
     ORIGIN_URL = 'https://mysale.partner.co.il';
-    HOST_SERVER_URL = ORIGIN_URL + '/MySaleT1/ServiceT1.asmx';
+    // HOST_SERVER_URL = ORIGIN_URL + '/MySalePreProdT1/ServiceT1.asmx'; //milena 08.01.2025 preprod
+    HOST_SERVER_URL = ORIGIN_URL + '/MySaleT1/ServiceT1.asmx'; 
 } else {
     if (Constants.isDevice) { // Real device
         //ORIGIN_URL = 'http://82.102.160.42';
@@ -37,6 +38,7 @@ const CONNECTED_AS_KEY_NAME = 'CONNECTED_AS';
 const GENERAL_PARAMS_KEY_NAME = 'GENERAL_PARAMS';
 const ORG_UNIT_CODE_KEY_NAME = 'ORG_UNIT_CODE';
 const AUTHENTICATION_TIME_KEY_NAME = 'AUTHENTICATION_TIME';
+const CUSTOM_IMEI_KEY_NAME = 'CUSTOM_IMEI';
 
 export {
     APP_VERSION,
@@ -56,5 +58,6 @@ export {
     GENERAL_PARAMS_KEY_NAME,
     ORG_UNIT_CODE_KEY_NAME,
     AUTHENTICATION_TIME_KEY_NAME,
-    IS_P2_LITE_DEVICE
+    IS_P2_LITE_DEVICE,
+    CUSTOM_IMEI_KEY_NAME
 };

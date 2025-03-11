@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, View, PermissionsAndroid, Alert} from 'react-native';
 import {Provider} from 'react-redux';
 import {Asset} from 'expo-asset';
@@ -8,9 +8,18 @@ import RootNavigation from './app/navigation/RootNavigation';
 import {NavigationContainer} from '@react-navigation/native';
 import PartnerUtils from './app/utils/PartnerNative';
 import GlobalHelper from './app/utils/globalHelper';
+import customImei from './app/utils/customImei';
 import IMEI from "react-native-imei";
 import {TEST_MODE} from "./app/constants/General";
 import RNFS from 'react-native-fs';
+// import * as SplashScreen from 'expo-splash-screen';
+
+// SplashScreen.preventAutoHideAsync();//added by Milena 25.11.2024
+// //added by Milena 25.11.2024
+// SplashScreen.setOptions({
+//     duration: 1000,
+//     fade: true
+// });
 
 
 // export default class App extends React.Component {
@@ -105,7 +114,12 @@ export default function App({skipLoadingScreen}) {
 
     async function getImei() {
         try {
-            const status = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.READ_PHONE_STATE);
+            console.log('in getImei');
+        let imei = await customImei.getImei();
+        GlobalHelper.deviceId = imei;
+        console.log('imei: ' + imei);
+       // return imei;
+          /*  const status = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.READ_PHONE_STATE);
             if (status === PermissionsAndroid.RESULTS.GRANTED) {
                 //console.log(PermissionsAndroid.request.PERMISSIONS.READ_PRIVILEGED_PHONE_STATE);
                 //console.log(TEST_MODE);
@@ -119,7 +133,7 @@ export default function App({skipLoadingScreen}) {
                 // console.log(RNFS.readFile(RNFS.ExternalStorageDirectoryPath + '/Roi/IMEI.txt'))
             } else {
                 Alert.alert('לא ניתנה הרשאה מתאימה לקריאת מזהה המכשיר');
-            }
+            }*/
         } catch (err) {
             Alert.alert(err.message);
         }
@@ -127,7 +141,6 @@ export default function App({skipLoadingScreen}) {
 
     async function cacheResourcesAsync() {
         await getImei();
-
         const images = [
             require('./app/assets/images/LogoMySale.png'),
             require('./app/assets/images/icon.png'),

@@ -304,7 +304,7 @@ export default function AuthLoadingScreen(props) {
                 }
             } catch (error) {
             }
-
+            
             Api.post('/GetUserDetails', {
                 strCurrentOrgUnit: GlobalHelper.orgUnitCode,
                 strIdNum: '',
@@ -336,7 +336,8 @@ export default function AuthLoadingScreen(props) {
                                             } else {
                                                 getGeneralParams(false);
                                             }
-                                        } else if (!userDetails.IsAdmin) {
+                                        } else if (userDetails.IsAdmin) {
+                                            console.log('is admin');
                                             props.setUserDetails(userDetails);
                                             ToastAndroid.show('יש לקשר את המכשיר למרכז', ToastAndroid.SHORT);
                                             props.navigation.navigate('SwitchOU', {
@@ -377,14 +378,17 @@ export default function AuthLoadingScreen(props) {
     }
 
     function getGeneralParams(isPinpadConnected) {
+        // alert("getGeneralParams isPinpadConnected: " + isPinpadConnected);
         Api.post('/GetGeneralParams', {
             strCurrentOrgUnit: GlobalHelper.orgUnitCode,
             equipmentCode: GlobalHelper.deviceId,
             isConfig: 'N'
         }).then(resp => {
             let res = resp.d;
+            // alert('generalParams: ' + JSON.stringify(res));
             if (res && res.IsSuccess && res.DbParams) {
                 GlobalHelper.generalParams = res.DbParams;
+                // alert('generalParams isPinpadConnected: ' + isPinpadConnected);
                 if (!isPinpadConnected || (!res.DbParams.XML_COMMAND_13 && !res.DbParams.XML_COMMAND_10_6 && !res.DbParams.XML_COMMAND_10_12 && !res.DbParams.XML_COMMAND_10_13)) {
                     props.setSignedIn(true);
                 } else {
@@ -397,6 +401,7 @@ export default function AuthLoadingScreen(props) {
     }
 
     function loginWithCaspit() {
+        // alert("loginWithCaspit IS_P2_LITE_DEVICE: " + IS_P2_LITE_DEVICE);
         if (IS_P2_LITE_DEVICE) {
             SunmiScanner.start((result, error) => {
                 if (result === 'success') {
@@ -409,8 +414,10 @@ export default function AuthLoadingScreen(props) {
 
         } else { // SM-T395
             setProgressMessage('מתחבר לפינפד...')
+            // alert("loginWithCaspit Caspit: " + JSON.stringify(Caspit));
             if (Caspit) {
                 Caspit.isCompanionConnected(isConnected => {
+                    // alert("loginWithCaspit isConnected: " + isConnected);
                     if (isConnected) {
                         getGeneralParams(true);
                     } else {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableNativeFeedback, Image, StyleSheet, View, Text, TouchableOpacity, ToastAndroid, ScrollView } from 'react-native';
+import { TouchableNativeFeedback, Image, StyleSheet, View, Text, TouchableOpacity, ToastAndroid, ScrollView, Keyboard } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Api from '../api/api';
 import Security from '../utils/Security';
@@ -124,7 +124,7 @@ export default class SignInScreen extends React.Component {
 
     render() {
         return (
-            <ScrollView contentContainerStyle={styles.scrollView}>
+            <ScrollView contentContainerStyle={styles.scrollView} keyboardShouldPersistTaps="always">
                 {this.state.isLoading ?
                     <MyActivityIndicator /> :
                     <View style={styles.contentContainer}>
@@ -172,7 +172,7 @@ export default class SignInScreen extends React.Component {
                                     </TouchableOpacity>
                                 </View>}
                                 <View style={styles.actionButton}>
-                                    <TouchableOpacity style={[MySaleStyle.PartnerButtonBackground, styles.btn]} onPress={this.state.isStep1 ? this.sendSMS : this.checkCode}>
+                                    <TouchableOpacity style={[MySaleStyle.PartnerButtonBackground, styles.btn]} onPress={(this.state.isStep1 ? this.sendSMS : this.checkCode)}>
                                         <Text style={styles.btnText}>{this.state.isStep1 ? 'שלחו לי קוד' : 'זהו, סיימנו'}</Text>
                                     </TouchableOpacity>
                                 </View>

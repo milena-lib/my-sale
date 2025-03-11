@@ -67,7 +67,7 @@ export class SwitchOUScreen extends React.Component {
 
   render() {
     const { fromLogin } = this.props.route.params ?? {};
-
+    
     return (<View style={[MySaleStyle.viewScreen, MySaleStyle.flex1]}>
       {fromLogin ?
         <View style={styles.logoContainer}>

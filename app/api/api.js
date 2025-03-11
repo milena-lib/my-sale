@@ -83,7 +83,7 @@ class Api {
         return Promise.resolve(data);
       });
     }).catch((ex) => {
-      console.log(ex);
+      console.log(ex.message);
       const lastSlashIndex = url.lastIndexOf("/");
       const funcName = url.substring(lastSlashIndex + 1, url.length);
       const data = { "d": { "IsSuccess": false, "ErrorMessage": "Global exception calling " + funcName + ", " + ex.message, } };

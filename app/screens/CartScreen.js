@@ -227,7 +227,7 @@ export class CartScreen extends React.Component {
     if (cart.Lines.length == 0) {
       this.props.clearCustomer();
       this.props.clearCart();
-
+      
       this.props.navigation.navigate('Home');
     } else {
       this.setState({
