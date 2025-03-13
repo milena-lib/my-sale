@@ -29,6 +29,6 @@ In app.json:
 ### Environment Name (displayed under app icon)
 In my-sale\\android\app\src\main\res\values\strings.xml
 <resources>
-  <string name="app_name">MySale Test</string>
+  <string name="app_name">MySale</string>
 </resources>
 
