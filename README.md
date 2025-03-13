@@ -27,7 +27,7 @@ In app.json:
 "name": "MySale"
 
 ### Environment Name (displayed under app icon)
-In my-sale\\android\app\src\main\res\values\strings.
+In my-sale\android\app\src\main\res\values\strings.
 #### Test
 <resources>
   <string name="app_name">MySale Test</string>
