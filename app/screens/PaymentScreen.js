@@ -294,8 +294,8 @@ export class PaymentScreen extends React.Component {
             city: invoiceDetailsState.city,
             zipCode: invoiceDetailsState.zipCode,
             eilatFlag: invoiceDetailsState.isEilatResident,
-            //isSMSOnly: invoiceDetailsState.isSMSOnly ? "Y":"N",
-            //SMSPhone: invoiceDetailsState.SMSPhone,
+            isSMSOnly: invoiceDetailsState.isSMSOnly ? "Y":"N",
+            SMSPhone: invoiceDetailsState.SMSPhone,
             emvFlag,
             emvManual
         }).then(resp => {
@@ -444,9 +444,9 @@ export class PaymentScreen extends React.Component {
                 city: invoiceDetailsState.city,
                 zipCode: invoiceDetailsState.zipCode,
                 eilatFlag: invoiceDetailsState.isEilatResident,
-                eilatResidentBase64EncodedImage: invoiceDetailsState.eilatResidentBase64EncodedImage //,
-                //isSMSOnly: invoiceDetailsState.isSMSOnly ? "Y":"N",
-                //SMSPhone: invoiceDetailsState.SMSPhone,
+                eilatResidentBase64EncodedImage: invoiceDetailsState.eilatResidentBase64EncodedImage,
+                isSMSOnly: invoiceDetailsState.isSMSOnly ? "Y":"N",
+                SMSPhone: invoiceDetailsState.SMSPhone,
             }).then(resp => {
                 if (resp.d && resp.d.IsSuccess) {
                     if (resp.d.ApproversList.length > 0) {
@@ -789,9 +789,9 @@ export class PaymentScreen extends React.Component {
             address2: this.state.houseNumber,
             city: this.state.city,
             zipCode: this.state.zipCode,
-            eilatFlag: this.state.isEilatResident  //,
-            // isSMSOnly: this.state.isSMSOnly ? "Y":"N",
-            // SMSPhone: this.state.SMSPhone,
+            eilatFlag: this.state.isEilatResident,
+            isSMSOnly: this.state.isSMSOnly ? "Y":"N",
+            SMSPhone: this.state.SMSPhone,
         }).then(resp => {
             this.setState({isLoading: false});
             if (resp.d && resp.d.IsSuccess) {
@@ -879,9 +879,9 @@ export class PaymentScreen extends React.Component {
             houseNumber: invoiceDetailsState.houseNumber,
             zipCode: invoiceDetailsState.zipCode,
             isEilatResident: invoiceDetailsState.isEilatResident,
-            eilatResidentBase64EncodedImage: invoiceDetailsState.eilatResidentBase64EncodedImage //,
-            // isSMSOnly: '', // invoiceDetailsState.isSMSOnly ? "Y":"N",
-            // SMSPhone: '' // invoiceDetailsState.SMSPhone,
+            eilatResidentBase64EncodedImage: invoiceDetailsState.eilatResidentBase64EncodedImage,
+            isSMSOnly: invoiceDetailsState.isSMSOnly ? "Y":"N",
+            SMSPhone: invoiceDetailsState.SMSPhone,
         }
         this.setState(Object.assign(newState, paymentState));
     }

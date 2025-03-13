@@ -4,7 +4,7 @@ import * as Device from 'expo-device';
 const APP_VERSION = '3.1.1';
 const APP_NAME = 'MySale';
 const TEST_MODE = Constants.manifest.name.toLowerCase().search('test') !== -1;
-console.log("Name: " +Constants.manifest.name)
+
 const IS_P2_LITE_DEVICE = Device.modelName.toLowerCase() === 'p2lite';
 
 var ORIGIN_URL = '';
@@ -13,7 +13,7 @@ var HOST_SERVER_URL = '';
 if (!TEST_MODE) {
     ORIGIN_URL = 'https://mysale.partner.co.il';
     // HOST_SERVER_URL = ORIGIN_URL + '/MySalePreProdT1/ServiceT1.asmx'; //milena 08.01.2025 preprod
-    HOST_SERVER_URL = ORIGIN_URL + '/MySaleT1/ServiceT1.asmx'; 
+    HOST_SERVER_URL = ORIGIN_URL + '/MySaleT1/ServiceT1.asmx';     
 } else {
     if (Constants.isDevice) { // Real device
         //ORIGIN_URL = 'http://82.102.160.42';
