@@ -48,12 +48,22 @@ class Security {
                         module: null,
                     }
                 };
+
+                // alert("params: " + JSON.stringify(params)); //shira
+
                 console.log("postByUrl: ", ORIGIN_URL + ADAPTER_HANDLER_URL);
                 console.log("postByUrl params: ", params);
                 
                 return await Api.postByUrl(ORIGIN_URL + ADAPTER_HANDLER_URL, params
                 ).then(async resp => {
+
+                    // alert("resp: " + JSON.stringify(resp)) //shira
+
                     let isValid = await Security.validateAllGuidsCallBack(resp);
+            
+                    // alert("isValid: " + isValid) //shira
+
+
                     if (isValid) {
                         Api.sessionGuid = params.strParams.guid;
                         Api.sessionSecuredGuid = params.strParams.strSecuredGuid;

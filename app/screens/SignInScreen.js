@@ -88,10 +88,14 @@ export default class SignInScreen extends React.Component {
             strParams: { msisdn: this.state.phoneNumber, code: this.state.code, application: APP_NAME }
         };
 
+        // alert("params: " + JSON.stringify(params)); //shira
+
         let guid = null;
 
         Api.postByUrl(ORIGIN_URL + ADAPTER_HANDLER_URL, params
         ).then(async (resp) => {
+
+            // alert("resp: " + JSON.stringify(resp)); //shira
             try {
                 this.setState({ errorMessage: null });
 
@@ -108,7 +112,11 @@ export default class SignInScreen extends React.Component {
                     this.setState({ isLoading: false, errorMessage: 'הקוד שהוזן אינו תקין' });
                 } else {
                     await AsyncStorage.setItem(GUID_KEY_NAME, guid);
+                    // alert("before validateAllGuids"); //shira
+
                     let guidIsValid = await Security.validateAllGuids();
+                    // alert("after validateAllGuids:" + guidIsValid); //shira
+
                     if (guidIsValid) {
                         await AsyncStorage.setItem(AUTHENTICATION_TIME_KEY_NAME, (new Date()).toISOString());
                         this.props.navigation.push('AuthLoading');
