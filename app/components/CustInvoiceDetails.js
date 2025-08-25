@@ -131,8 +131,8 @@ export default class CustInvoiceDetails extends React.Component {
         if (this.props.detailsRequired) {
             result = (!this.state.isMailOnly || GlobalHelper.isEmailValid(this.state.emailAddress)) &&
                 this.state.customerName.length >= 2 && this.state.custIdType !== 'UNIDENTIFIED' &&
-                ((this.state.custIdType === 'ID_NUM' && GlobalHelper.validateIdNum(this.state.custIdNum)) ||
-                    ((this.state.custIdType !== 'ID_NUM' && this.state.custIdNum.length > 4)));
+                (((this.state.custIdType === 'ID_NUM' || this.state.custIdType === 'LTD') && GlobalHelper.validateIdNum(this.state.custIdNum)) ||
+                    (((this.state.custIdType !== 'ID_NUM' && this.state.custIdType !== 'LTD') && this.state.custIdNum.length > 4)));
 
             if (this.state.isSMSOnly) {
                 result = result && (this.state.SMSPhone !== '' && (this.state.SMSPhone.length >= 9 && this.state.SMSPhone.length <= 10))
@@ -142,7 +142,7 @@ export default class CustInvoiceDetails extends React.Component {
 
             result = result && (this.state.customerName === '' || this.state.customerName.length >= 2);
 
-            if (this.state.isRequireCustIdNum || (this.state.custIdNum !== '' && this.state.custIdType === 'ID_NUM')) {
+            if (this.state.isRequireCustIdNum || (this.state.custIdNum !== '' && (this.state.custIdType === 'ID_NUM' || this.state.custIdType === 'LTD'))) {
                 result = result && GlobalHelper.validateIdNum(this.state.custIdNum);
             }
 
@@ -230,8 +230,8 @@ export default class CustInvoiceDetails extends React.Component {
                                         keyboardType='numeric'
                                         onChangeText={(custIdNum) => this.setState({custIdNum})}/>
                                     {this.state.submitted && ((this.props.detailsRequired || this.state.isRequireCustIdNum) &&
-                                            (this.state.custIdType === 'ID_NUM' && (this.state.custIdNum === '' || !GlobalHelper.validateIdNum(this.state.custIdNum))) ||
-                                            this.state.custIdType === 'ID_NUM' && this.state.custIdNum !== '' && !GlobalHelper.validateIdNum(this.state.custIdNum)) &&
+                                            ((this.state.custIdType === 'ID_NUM' || this.state.custIdType === 'LTD') && (this.state.custIdNum === '' || !GlobalHelper.validateIdNum(this.state.custIdNum))) ||
+                                            (this.state.custIdType === 'ID_NUM' || this.state.custIdType === 'LTD') && this.state.custIdNum !== '' && !GlobalHelper.validateIdNum(this.state.custIdNum)) &&
                                         <Text style={{color: Colors.redColor, marginLeft: 30}}>נא להזין מספר ת.ז
                                             חוקי</Text>}
                                 </View>}

@@ -92,36 +92,36 @@ class Security {
                         Alert.alert("אירעה שגיאה בזיהוי ההתקנה, יש להסיר את ההתקנה, ולהתקין מחדש את האפליקציה דרך אתר האינטראנט");
                     }
                     else {
-                        // checking if should install a new version
-                        if (data.CheckGuidAndAppAuthorizationResult.LastAppVersion != null && data.CheckGuidAndAppAuthorizationResult.LastAppVersion != "" && data.CheckGuidAndAppAuthorizationResult.LastAppVersion != APP_VERSION) {
+                        // checking if should install a new version (remove by request)
+                        // if (data.CheckGuidAndAppAuthorizationResult.LastAppVersion != null && data.CheckGuidAndAppAuthorizationResult.LastAppVersion != "" && data.CheckGuidAndAppAuthorizationResult.LastAppVersion != APP_VERSION) {
 
-                            if (data.CheckGuidAndAppAuthorizationResult.ForceInstallVersion) {
-                                Alert.alert("ישנה גירסה חדשה לאפליקציה, באפשרותך להוריד אותה כעת");
-                                WebBrowser.openBrowserAsync(UPDATE_INSTALL_PAGE_URL);
-                                BackHandler.exitApp();
-                            }
-                            else {
-                                success = true;
-                                Alert.alert(
-                                    'גירסא חדשה!',
-                                    'ישנה גירסה חדשה לאפליקציה, האם ברצונך להוריד אותה כעת?',
-                                    [
-                                        { text: 'ביטול', onPress: () => { return true; }, style: 'cancel' },
-                                        {
-                                            text: 'עדכון', onPress: () => {
-                                                WebBrowser.openBrowserAsync(UPDATE_INSTALL_PAGE_URL);
-                                                BackHandler.exitApp();
-                                            }
-                                        },
-                                    ],
-                                    { cancelable: true }
-                                )
-                            }
-                        }
-                        else {
+                        //     if (data.CheckGuidAndAppAuthorizationResult.ForceInstallVersion) {
+                        //         Alert.alert("ישנה גירסה חדשה לאפליקציה, באפשרותך להוריד אותה כעת");
+                        //         WebBrowser.openBrowserAsync(UPDATE_INSTALL_PAGE_URL);
+                        //         BackHandler.exitApp();
+                        //     }
+                        //     else {
+                        //         success = true;
+                        //         Alert.alert(
+                        //             'גירסא חדשה!',
+                        //             'ישנה גירסה חדשה לאפליקציה, האם ברצונך להוריד אותה כעת?',
+                        //             [
+                        //                 { text: 'ביטול', onPress: () => { return true; }, style: 'cancel' },
+                        //                 {
+                        //                     text: 'עדכון', onPress: () => {
+                        //                         WebBrowser.openBrowserAsync(UPDATE_INSTALL_PAGE_URL);
+                        //                         BackHandler.exitApp();
+                        //                     }
+                        //                 },
+                        //             ],
+                        //             { cancelable: true }
+                        //         )
+                        //     }
+                        // }
+                        // else {
                             success = true;
                             //OnAllGuidsAreValidated();
-                        }
+                        // }
                     }
                 }
                 else {

@@ -444,9 +444,9 @@ export class PaymentScreen extends React.Component {
                 city: invoiceDetailsState.city,
                 zipCode: invoiceDetailsState.zipCode,
                 eilatFlag: invoiceDetailsState.isEilatResident,
-                eilatResidentBase64EncodedImage: invoiceDetailsState.eilatResidentBase64EncodedImage //,
-                //isSMSOnly: invoiceDetailsState.isSMSOnly ? "Y":"N",
-                //SMSPhone: invoiceDetailsState.SMSPhone,
+                eilatResidentBase64EncodedImage: invoiceDetailsState.eilatResidentBase64EncodedImage,
+                isSMSOnly: "", // invoiceDetailsState.isSMSOnly ? "Y":"N",
+                SMSPhone: "" //invoiceDetailsState.SMSPhone,
             }).then(resp => {
                 if (resp.d && resp.d.IsSuccess) {
                     if (resp.d.ApproversList.length > 0) {

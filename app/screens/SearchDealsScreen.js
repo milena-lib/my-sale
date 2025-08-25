@@ -143,7 +143,6 @@ export class SearchDealsScreen extends React.Component {
       strCurrentOrgUnit: GlobalHelper.orgUnitCode,
       strDateFrom: this.state.dateFrom,
       strDateTo: this.state.dateTo,
-      dealStatus: this.state.dealStatus,
       strPaymentType: this.state.paymentType,
       strCardNum: this.state.cardNum,
       strCatalogNum: this.state.catalogNum,
@@ -151,6 +150,7 @@ export class SearchDealsScreen extends React.Component {
       strOrgUnitCode: this.state.searchOrgUnit,
       strCustPhone: this.state.custPhoneNum,
       strCustIdNum: this.state.custIdNum,
+      dealStatus: this.state.dealStatus
     }).then(resp => {
       this.setState({ isLoading: false });
       if (resp?.d?.IsSuccess) {

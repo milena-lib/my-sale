@@ -85,7 +85,7 @@ export class SearchCustomer extends React.Component {
         if (!this.state.custIdNum) {
             return;
         }
-        else if (this.state.custIdType == 'ID_NUM' && !GlobalHelper.validateIdNum(this.state.custIdNum)) {
+        else if ((this.state.custIdType == 'ID_NUM' || this.state.custIdType === 'LTD') && !GlobalHelper.validateIdNum(this.state.custIdNum)) {
             let msg = 'מספר הזהות שהוזן אינו חוקי';
             this.setState({ resultsCounter: msg });
             return;

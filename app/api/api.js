@@ -60,9 +60,12 @@ class Api {
 
     return fetch(url, options).then(resp => {
       let json = resp.json();
+      
       if (resp.ok) {
         return json;
       }
+
+      alert("not resp.ok - params: " + params  + "; JSON: " + json);
       return json.then(err => {
         console.log("ERROR:");
         console.log(err);

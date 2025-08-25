@@ -118,8 +118,8 @@ android {
         applicationId 'com.mysale.app'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 8
-        versionName "3.2.0"
+        versionCode 1
+        versionName "3.0.3"
     }
 
     splits {
@@ -127,14 +127,7 @@ android {
             reset()
             enable enableSeparateBuildPerCPUArchitecture
             universalApk false  // If true, also generate a universal APK
-//             include (*reactNativeArchitectures())
-            include "armeabi-v7a", "x86", "arm64-v8a", "x86_64"
-
-        }
-    }
-    sourceSets {
-        main {
-            jniLibs.srcDirs '../libs'
+            include (*reactNativeArchitectures())
         }
     }
     signingConfigs {
@@ -197,10 +190,8 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
-    implementation fileTree(dir: 'C:\\Projects\\my-sale\\android\\libs', include: ['*.aar', '*.jar'], exclude: [])
 
     def isGifEnabled = (findProperty('expo.gif.enabled') ?: "") == "true";
     def isWebpEnabled = (findProperty('expo.webp.enabled') ?: "") == "true";

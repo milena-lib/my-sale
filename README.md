@@ -7,6 +7,8 @@ master
 # Test Branch
 dev
 
+# New Test Branch (Copy from Prod and updated)
+
 # Version control
 In my-sale\android\app\build.gradle:
 defaultConfig {

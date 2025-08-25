@@ -4,9 +4,6 @@ import android.app.Application;
 import android.content.res.Configuration;
 import androidx.annotation.NonNull;
 
-import com.sunmi.scanner.SunmiScannerPackage;
-import com.caspit.core.CaspitCorePackage;
-import com.caspit.pinpad.CaspitPinpadPackage;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
@@ -14,7 +11,6 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint;
 import com.facebook.react.defaults.DefaultReactNativeHost;
 import com.facebook.soloader.SoLoader;
-import com.partner.UtilsPackage;
 
 import expo.modules.ApplicationLifecycleDispatcher;
 import expo.modules.ReactNativeHostWrapper;
@@ -36,10 +32,6 @@ public class MainApplication extends Application implements ReactApplication {
         List<ReactPackage> packages = new PackageList(this).getPackages();
         // Packages that cannot be autolinked yet can be added manually here, for example:
         // packages.add(new MyReactNativePackage());
-          packages.add(new CaspitPinpadPackage());
-          packages.add(new UtilsPackage());
-          packages.add(new CaspitCorePackage());
-          packages.add(new SunmiScannerPackage());
         return packages;
       }
 
